@@ -6,115 +6,244 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>¡Última Oportunidad!</title>
+    
+    <title>¡Espera! Oferta Especial</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
     <style type="text/css">
-        body { font-family: 'Montserrat', sans-serif; background-color: #fff; }
-        
-        .alert-bar {
-            background-color: #ffc107; /* Amarelo para diferenciar do Vermelho do Upsell */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff;
             color: #333;
+        }
+
+        /* Barra de Alerta Amarela (Padrão Downsell) */
+        .alert-bar {
+            background-color: #ffc107;
+            color: #212529;
             text-align: center;
-            padding: 10px;
-            font-weight: bold;
+            padding: 12px;
+            font-weight: 800;
             font-size: 1rem;
             width: 100%;
             text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .main-container { max-width: 700px; margin: 0 auto; padding: 20px; }
-        
-        h1 { color: #cc0000; font-weight: 800; font-size: 2.2rem; text-align: center; line-height: 1.2; }
-        
-        p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 20px; }
+        .main-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px 20px 40px 20px;
+        }
 
-        .discount-box {
-            background-color: #e8f5e9;
+        /* Tipografia */
+        h2 {
+            font-weight: 800;
+            color: #cc0000;
+            text-align: center;
+            line-height: 1.3;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .headline-sub {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 30px 0;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Caixa de Preço */
+        .price-box {
+            background-color: #f1f8e9;
             border: 2px dashed #28a745;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #dc3545;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .new-price {
+            color: #28a745;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        /* Lista de Benefícios */
+        .benefit-list {
+            background-color: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
-            text-align: center;
             margin: 20px 0;
         }
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .check-icon {
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
 
-        .strike { text-decoration: line-through; color: #dc3545; font-size: 1.2rem; }
-        .final-price { color: #28a745; font-size: 3rem; font-weight: 800; }
-
+        /* Botão */
         .btn-downsell {
             background-color: #28a745;
             color: white;
             font-size: 1.2rem;
-            font-weight: bold;
-            padding: 15px;
+            font-weight: 800;
+            padding: 20px 15px;
             border-radius: 8px;
             text-transform: uppercase;
             width: 100%;
             display: block;
             border: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
             text-align: center;
             text-decoration: none;
+            transition: transform 0.2s;
+            white-space: normal;
         }
-        .btn-downsell:hover { transform: scale(1.02); background-color: #218838; color: #fff; text-decoration: none;}
 
-        .no-thanks { display: block; text-align: center; margin-top: 20px; color: #999; font-size: 0.85rem; text-decoration: underline; }
+        .btn-downsell:hover {
+            transform: scale(1.02);
+            background-color: #218838;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .small-text {
+            font-size: 0.9rem;
+            font-weight: 400;
+            text-transform: none;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Link Não Obrigado */
+        .no-thanks {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #999;
+            font-size: 0.9rem;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .no-thanks:hover { color: #666; }
+
     </style>
 </head>
 
 <body>
 
     <div class="alert-bar">
-        ⚠️ ESPERA... NO TE VAYAS SIN LEER ESTO
+        ⚠️ PASO 1 DE 2: ¡NO CIERRES ESTA PÁGINA!
     </div>
 
     <div class="main-container">
         
         <br>
-        <h1>¿ES POR EL PRECIO?</h1>
-        <br>
+        
+        <h2>¿De verdad quieres ser conocida en tu ciudad como la mujer que logró adelgazar, pero que no se anima a usar bikini porque la piel le quedó flácida y caída?</h2>
 
-        <p>Entiendo perfectamente. Acabas de invertir en el <b>Mounjaro Natural</b> y tal vez agregar $57 más a tu tarjeta ahora mismo no estaba en tus planes.</p>
-
-        <p>Pero realmente <b>no quiero que te pierdas esto.</b></p>
-
-        <p>Sé lo frustrante que es perder peso y luego mirarse al espejo y ver piel colgando en los brazos y el vientre. No quiero que pases por eso solo porque el precio era un obstáculo hoy.</p>
-
-        <p>Quiero que tengas la experiencia COMPLETA y te sientas orgullosa de tu cuerpo desnudo.</p>
-
-        <p>Así que haré algo un poco "loco".</p>
-
-        <p>No voy a ganar dinero con esta transacción. Voy a eliminar mi ganancia y dejarte el <b>"Protocolo Piel de Diamante"</b> por una tarifa simbólica, solo para cubrir los costos de la plataforma.</p>
-
-        <p><b>Esta es mi oferta final para ti:</b></p>
-
-        <div class="discount-box">
-            <p style="margin-bottom: 5px;">Precio Normal: <span class="strike">$150</span></p>
-            <p style="margin-bottom: 5px;">Oferta Anterior: <span class="strike">$57</span></p>
-            <p style="margin-bottom: 0; font-weight: bold;">SOLO EN ESTA PÁGINA:</p>
-            <div class="final-price">$27 USD</div>
+        <div class="headline-sub">
+            ¿CREES QUE $57 ES MUY CARO, VERDAD?
         </div>
 
-        <p>Sí, por solo $27 puedes asegurar que tu piel se mantenga firme mientras adelgazas.</p>
+        <p>Bueno, con tu permiso, me gustaría ofrecerte algo aún más valioso ahora, ¡porque realmente quiero que obtengas los resultados que mereces!</p>
 
-        <p>Es menos que el precio de una pizza, por la seguridad de tener un cuerpo firme y joven.</p>
+        <p>Entonces, voy a hacer que esta sea la decisión más fácil que hayas tomado...</p>
 
-        <p>Pero tengo que advertirte: <b>esta oferta no se repetirá.</b> Es un regalo de bienvenida único.</p>
+        <p>Al punto de que te sientas muy mal si dejas pasar esta oportunidad...</p>
 
+        <p><b>¿Y cómo voy a hacer eso? Así...</b></p>
+        
+        <p>Parece una locura... Pero...</p>
+
+        <div style="background-color: #fff3cd; padding: 15px; border-radius: 5px; border-left: 5px solid #ffc107;">
+            <p style="margin: 0; font-weight: bold; color: #856404;">VOY A REDUCIR EL PRECIO DEL "PROTOCOLO PIEL DE DIAMANTE" A ALGO RIDÍCULO...</p>
+        </div>
         <br>
 
-        <a href="LINK_DO_CHECKOUT_DE_27_DOLARES" class="btn-downsell">
-            SÍ! QUIERO EL DESCUENTO Y EL PROTOCOLO POR SOLO $27
+        <p>Pero solo si decides aceptar esta oferta exclusiva <b>AHORA.</b></p>
+
+        <p>¿Por qué estoy haciendo esto?</p>
+
+        <p>Porque no quiero que algo como el precio sea la razón por la que pierdas la oportunidad de tener una piel firme, joven y pegada al músculo, desesperada por lucir tu nuevo cuerpo...</p>
+
+        <p>Además, creo en ofrecer tanto valor que estarás tan agradecida que realmente usarás estos métodos para transformar tu autoestima para siempre...</p>
+
+        <p>El objetivo aquí es ayudar a mujeres de todo el mundo a conquistar un cuerpo delgado y firme...</p>
+
+        <p>Entonces, ahora tendrás la oportunidad de acceder al "Protocolo Piel de Diamante" con un descuento especial...</p>
+
+        <div class="price-box">
+            <p style="margin-bottom: 5px; font-weight: 600;">DE <span class="old-price">$57</span>...</p>
+            <p style="margin-bottom: 0px; font-size: 1.2rem;">¡POR SOLO:</p>
+            <div class="new-price">$27 USD!</div>
+        </div>
+
+        <p class="text-center" style="color: #dc3545; font-weight: bold;">Solo ahora, aquí en esta página. ¡Cuando la cierres, perderás esta oportunidad para siempre!</p>
+
+        <p>Mira, si haces los cálculos y analizas los enormes beneficios que obtendrás a lo largo de un año, invirtiendo solo $27 en este Paquete Especial...</p>
+
+        <p><b>¡Notarás que estás gastando menos de $0.10 centavos al día! Ni el precio de un chicle...</b></p>
+
+        <div class="benefit-list">
+            <p style="font-weight: bold; margin-bottom: 15px;">Aquí tienes un resumen rápido de lo que recibirás:</p>
+            
+            <div class="benefit-item">
+                <span class="check-icon">✓</span>
+                <div>Con el <b>Mounjaro Natural</b>, derrites la grasa que deseas en tiempo récord.</div>
+            </div>
+            
+            <div class="benefit-item">
+                <span class="check-icon">✓</span>
+                <div>Con el <b>Protocolo Piel de Diamante</b>, garantizas que tu piel quede firme, sin celulitis y todo en su lugar.</div>
+            </div>
+        </div>
+
+        <p class="text-center">Desliza hacia abajo y toca el botón verde <i>"¡Sí, quiero agregar a mi pedido!"</i> para asegurar tu lugar ahora mismo...</p>
+
+        <a href="LINK_DO_CHECKOUT_DE_27_DO_DOWNSELL" class="btn-downsell">
+            SÍ, QUIERO AGREGAR AL MI PAQUETE POR SOLO $27
+            <span class="small-text">➤ (Oferta única de Downsell)</span>
         </a>
 
         <a href="LINK_DA_PAGINA_DE_OBRIGADO" class="no-thanks">
-            No, en serio. No quiero invertir $27 en la firmeza de mi piel. Entiendo que perderé esta oportunidad para siempre. Finalizar mi pedido.
+            No, gracias. Entiendo que perderé esta oferta especial y prefiero obtener resultados a un ritmo normal.
         </a>
 
         <br><br>
+
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 </html>
