@@ -245,21 +245,21 @@
     
     <script>
     (function() {
-        // Substitua pelo Link da sua Página de Downsell
+        // URL PARA ONDE VAI QUANDO CLICA EM VOLTAR
         var urlBackRedirect = 'https://cuerporenovado.site/downsell1'; 
 
-        // Empurra um estado no histórico do navegador
+        // Empurra estado no histórico
         history.pushState({}, "", location.href);
         history.pushState({}, "", location.href);
 
-        // Quando o usuário clicar em voltar, o navegador dispara esse evento
+        // Dispara quando clica em voltar
         window.onpopstate = function () {
             setTimeout(function () {
                 location.href = urlBackRedirect;
             }, 1);
         };
     })();
-</script>
+    </script>
 
 </body>
 </html>
