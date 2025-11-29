@@ -248,12 +248,18 @@
     
     <script>
     (function() {
-        history.pushState(null, null, location.href);
-        history.pushState(null, null, location.href);
-        history.pushState(null, null, location.href);
+        // URL PARA ONDE VAI QUANDO CLICA EM VOLTAR
+        var urlBackRedirect = 'https://cuerporenovado.site/downsell1'; 
 
+        // Empurra estado no histórico
+        history.pushState({}, "", location.href);
+        history.pushState({}, "", location.href);
+
+        // Dispara quando clica em voltar
         window.onpopstate = function () {
-            history.pushState(null, null, location.href);
+            setTimeout(function () {
+                location.href = urlBackRedirect;
+            }, 1);
         };
     })();
     </script>
