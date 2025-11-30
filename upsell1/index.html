@@ -243,24 +243,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     
-    </script>
+   <script>
+    (function() {
+        // URL PARA ONDE VAI QUANDO CLICA EM VOLTAR
+        var urlBackRedirect = 'https://cuerporenovado.site/downsell1'; 
 
-        <script type="text/javascript">
-      var back_redirect_back_link = "/downsell1" + location.search;
-      history.pushState({}, "", location.href);
-      history.pushState({}, "", location.href);
+        // Empurra estado no histórico
+        history.pushState({}, "", location.href);
+        history.pushState({}, "", location.href);
 
-      window.addEventListener(
-        "popstate",
-        function (event) {
-          if (event.state) {
+        // Dispara quando clica em voltar
+        window.onpopstate = function () {
             setTimeout(function () {
-              location.href = back_redirect_back_link;
+                location.href = urlBackRedirect;
             }, 1);
-          }
-        },
-        false
-      );
+        };
+    })();
     </script>
 
 </body>
