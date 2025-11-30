@@ -245,24 +245,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    
-    <script>
-    (function() {
-        // URL PARA ONDE VAI QUANDO CLICA EM VOLTAR
-        var urlBackRedirect = 'https://cuerporenovado.site/downsell1'; 
-
-        // Empurra estado no histórico
-        history.pushState({}, "", location.href);
-        history.pushState({}, "", location.href);
-
-        // Dispara quando clica em voltar
-        window.onpopstate = function () {
-            setTimeout(function () {
-                location.href = urlBackRedirect;
-            }, 1);
-        };
-    })();
-    </script>
 
 </body>
 </html>
