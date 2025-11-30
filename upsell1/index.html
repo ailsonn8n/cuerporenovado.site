@@ -244,22 +244,26 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     
    <script>
-    (function() {
-        // URL PARA ONDE VAI QUANDO CLICA EM VOLTAR
-        var urlBackRedirect = 'https://cuerporenovado.site/downsell1'; 
+(function() {
+    var back_redirect_back_link = "https://cuerporenovado.site/downsell1" + location.search;
+    var alreadyRedirected = false;
 
-        // Empurra estado no histórico
-        history.pushState({}, "", location.href);
-        history.pushState({}, "", location.href);
+    function pushHistory() {
+        history.pushState(null, null, location.href);
+    }
 
-        // Dispara quando clica em voltar
-        window.onpopstate = function () {
-            setTimeout(function () {
-                location.href = urlBackRedirect;
-            }, 1);
-        };
-    })();
-    </script>
+    for (var i = 0; i < 20; i++) { 
+        pushHistory();
+    }
+
+    window.addEventListener("popstate", function () {
+        if (!alreadyRedirected) {
+            alreadyRedirected = true;
+            window.location.replace(back_redirect_back_link);
+        }
+    });
+})();
+</script>
 
 </body>
 </html>
