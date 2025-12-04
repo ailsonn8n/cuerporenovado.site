@@ -17,6 +17,7 @@
             font-family: 'Montserrat', sans-serif;
             color: #333;
             line-height: 1.6;
+            background-color: #fdfdfd;
         }
 
         /* Barra de Alerta Vermelha */
@@ -31,59 +32,76 @@
         }
 
         .main-container {
-            max-width: 900px;
+            max-width: 800px; /* Mais estreito para facilitar a leitura */
             margin: 0 auto;
             padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
 
         /* Headlines */
         h1 {
             font-weight: 900;
-            color: #000;
+            color: #cc0000;
             text-transform: uppercase;
             letter-spacing: -1px;
             margin-bottom: 20px;
             font-size: 2rem;
+            line-height: 1.2;
+            text-align: center;
         }
         @media(min-width: 768px) {
-            h1 { font-size: 2.5rem; }
+            h1 { font-size: 2.8rem; }
+        }
+
+        .sub-headline {
+            font-size: 1.3rem;
+            color: #000;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 600;
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px dashed #ffc107;
         }
 
         h2 {
             font-weight: 800;
-            color: #cc0000;
+            color: #0056b3;
             margin-top: 40px;
             margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
         }
 
         h3 {
             font-weight: 700;
             color: #333;
+            margin-top: 30px;
         }
 
-        .sub-headline {
+        /* Texto da Carta */
+        .letter-body {
             font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 30px;
+            color: #444;
+        }
+        
+        .letter-body p {
+            margin-bottom: 25px;
         }
 
-        /* VSL Container (Vídeo Responsivo) */
-        .vsl-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            background-color: #000;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-            overflow: hidden;
+        /* Destaques no texto */
+        .highlight {
+            background-color: #ffff00;
+            padding: 2px 5px;
+            color: #000;
+            font-weight: bold;
         }
-        .vsl-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+
+        .red-text {
+            color: #cc0000;
+            font-weight: bold;
         }
 
         /* Botão Pulsante (CTA) */
@@ -101,9 +119,10 @@
             box-shadow: 0 4px 15px rgba(40, 167, 69, 0.5);
             text-align: center;
             text-decoration: none;
-            margin: 30px 0;
+            margin: 40px 0;
             animation: pulse 2s infinite;
             white-space: normal;
+            border-bottom: 5px solid #1e7e34;
         }
         .btn-cta:hover {
             background-color: #218838;
@@ -126,22 +145,10 @@
             100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
         }
 
-        /* Caixas de Texto */
-        .story-box {
-            padding: 20px 0;
-            font-size: 1.1rem;
-        }
-        
-        .highlight-yellow {
-            background-color: #fff3cd;
-            padding: 2px 5px;
-            font-weight: bold;
-        }
-
         /* Depoimentos */
         .testimonial-box {
             background-color: #f8f9fa;
-            border-left: 5px solid #007bff;
+            border-left: 5px solid #28a745;
             padding: 20px;
             border-radius: 5px;
             margin-bottom: 20px;
@@ -210,6 +217,16 @@
             border-top: 1px solid #ddd;
             font-size: 0.8rem;
             color: #666;
+            background-color: #f9f9f9;
+        }
+        
+        .author-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: inline-block;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -217,10 +234,10 @@
 <body>
 
     <div class="alert-bar">
-        ⚠️ ATENCIÓN: Este método natural está causando controversia en la industria farmacéutica. Mira este video antes de que sea borrado.
+        ⚠️ ATENCIÓN: Este método natural está causando controversia. Lee esta carta antes de que sea borrada.
     </div>
 
-    <div class="main-container text-center">
+    <div class="main-container">
         
         <br>
         <h1>DESCUBRE CÓMO ACTIVAR EL "EFECTO MOUNJARO" EN TU CUERPO DE FORMA 100% NATURAL, SIN INYECCIONES Y SIN GASTAR $1,000 DÓLARES AL MES.</h1>
@@ -229,146 +246,151 @@
             <b>Científicos revelan:</b> Una simple combinación de ingredientes de supermercado puede <b>activar las hormonas GLP-1 y GIP</b> (las mismas que activan las inyecciones famosas) para derretir la grasa profunda en tiempo récord.
         </p>
 
-        <div class="vsl-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/PLACEHOLDER" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <a href="LINK_DO_CHECKOUT_AQUI" class="btn-cta">
-            SÍ, QUIERO ACTIVAR MI METABOLISMO POR SOLO $47
-            <span class="btn-subtext">Compra Segura 🔒 Garantía de 30 Días 🛡️ Acceso Inmediato 📩</span>
-        </a>
-
-    </div>
-
-    <div class="main-container story-box">
-        
-        <p><b>De:</b> Mateo Martínez<br>
-        <b>Para:</b> Mujeres que están cansadas de luchar contra la balanza.</p>
-
-        <p>¿Alguna vez has sentido que, sin importar lo poco que comas, la aguja de la balanza simplemente no baja?</p>
-
-        <p>Ves a famosas y amigas perdiendo 10, 15 kilos rápidamente usando inyecciones caras como Ozempic o Mounjaro, y te preguntas: <i>"¿Por qué mi cuerpo no funciona así?"</i>.</p>
-
-        <p>La verdad es dolorosa: <b>No es tu culpa.</b></p>
-
-        <p>No te falta fuerza de voluntad. No eres perezosa.</p>
-
-        <p class="highlight-yellow">El verdadero problema es que tus hormonas de quema de grasa (<b>GLP-1 y GIP</b>) están "dormidas" debido a años de alimentación moderna y estrés.</p>
-
-        <p>Cuando estas hormonas no funcionan, tu cerebro nunca recibe la señal de "estoy llena". Sientes hambre todo el tiempo y tu cuerpo almacena cada caloría como grasa en tu vientre, brazos y piernas.</p>
-
-        <p>Las inyecciones de $1,000 dólares funcionan porque fuerzan artificialmente a estas hormonas a despertar.</p>
-
-        <p><b>PERO AHORA, HAY UNA MEJOR MANERA.</b><br>
-        Una manera que no requiere agujas.<br>
-        Que no causa náuseas terribles.<br>
-        Y que no cuesta una fortuna.</p>
-
-        <hr>
-
-        <h2 class="text-center text-uppercase">Presentamos: El Plan Mounjaro Natural™</h2>
-        <p class="text-center" style="font-size: 1.2rem;"><b>El Primer Protocolo del Mundo Diseñado para Activar tus Hormonas de Delgadez Naturalmente.</b></p>
-        <br>
-
-        <p>Después de ayudar a mi esposa Sofía a perder 12 kilos en 21 días (cuando los médicos decían que era imposible), decidí compartir este secreto con el mundo.</p>
-
-        <p>El <b>Plan Mounjaro Natural</b> no es una dieta restrictiva donde pasas hambre.<br>
-        Es un manual de <b>Bioquímica Nutricional</b>.</p>
-
-        <p>Te enseñaré la combinación exacta de alimentos, tés y "jugos activadores" que imitan el efecto de los medicamentos, enviando una orden inmediata a tu cerebro: <b>"QUEMA GRASA AHORA".</b></p>
-
-        <h3>LO QUE DESCUBRIRÁS DENTRO DEL PROGRAMA:</h3>
-        <ul style="list-style-type: none; padding: 0;">
-            <li style="margin-bottom: 15px;">✅ <b>El Secreto del GLP-1:</b> Qué comer en el desayuno para que tu cuerpo queme grasa automáticamente durante las siguientes 12 horas.</li>
-            <li style="margin-bottom: 15px;">✅ <b>La "Inyección" Natural:</b> Una receta de bebida casera potente que suprime el hambre y la ansiedad por los dulces casi instantáneamente (perfecta para las tardes).</li>
-            <li style="margin-bottom: 15px;">✅ <b>Lista de Compras Económica:</b> Cómo encontrar los ingredientes poderosos en cualquier supermercado de tu barrio, sin gastar más de lo que ya gastas.</li>
-            <li style="margin-bottom: 15px;">✅ <b>Protocolo de 21 Días:</b> Un paso a paso exacto. Solo tienes que copiar y pegar lo que hicimos para ver los resultados en el espejo.</li>
-        </ul>
-
-        <hr>
-
-        <h2 class="text-center">LO QUE DICEN NUESTRAS ALUMNAS</h2>
-        
-        <div class="testimonial-box">
-            <p class="mb-2">"Mateo, ¡no puedo creerlo! Llevo 5 días haciendo el jugo activador y ya bajé 3 kilos. Lo mejor es que no tengo esa hambre desesperada por la noche. ¡Gracias!"</p>
-            <p class="mb-0 text-right font-weight-bold">- Camila R., 38 años</p>
-        </div>
-
-        <div class="testimonial-box">
-            <p class="mb-2">"Estuve a punto de comprar las inyecciones, pero me daba miedo los efectos secundarios. Probé el Mounjaro Natural y fue la mejor decisión. Mi esposo dice que parezco otra mujer."</p>
-            <p class="mb-0 text-right font-weight-bold">- Elena S., 45 años</p>
-        </div>
-
-        <hr>
-
-        <h2 class="text-center">SI ORDENAS HOY, TAMBIÉN RECIBIRÁS ESTOS 3 REGALOS GRATIS:</h2>
-
-        <div class="bonus-box">
-            <h4>🎁 REGALO #1: DETOX DE EMERGENCIA 24 HORAS (Valor: $47)</h4>
-            <p class="mb-0">¿Tienes una fiesta o evento mañana? Usa este protocolo para desinflamar tu vientre y perder hasta 2kg de líquidos retenidos en un solo día. <b>(GRATIS HOY)</b></p>
-        </div>
-
-        <div class="bonus-box">
-            <h4>🎁 REGALO #2: POSTRES QUE NO ENGORDAN (Valor: $37)</h4>
-            <p class="mb-0">Aprende a preparar dulces deliciosos que activan tu metabolismo en lugar de frenarlo. Come chocolate sin culpa. <b>(GRATIS HOY)</b></p>
-        </div>
-
-        <div class="bonus-box">
-            <h4>🎁 REGALO #3: ACCESO A LA COMUNIDAD VIP (Valor: Inestimable)</h4>
-            <p class="mb-0">Nunca estarás sola. Únete a miles de mujeres que se apoyan mutuamente en este viaje de transformación. <b>(GRATIS HOY)</b></p>
-        </div>
-
-        <div class="price-section">
-            <h2 style="margin-top: 0;">VAMOS A HACER LAS CUENTAS...</h2>
+        <div class="letter-body">
             
-            <p>Si fueras a un nutricionista especializado en hormonas, pagarías al menos <b>$100 por consulta</b>.</p>
-            <p>Si compraras las inyecciones de farmacia, gastarías <b>$1,000 TODOS LOS MESES</b>.</p>
+            <p><b>Estimada amiga,</b></p>
 
-            <p>El valor total del Plan Mounjaro Natural + Los Bonos es de <span class="old-price">$297</span>.</p>
+            <p>Si alguna vez has sentido que, sin importar lo poco que comas, la aguja de la balanza simplemente no baja...</p>
 
-            <p>Pero hoy, puedes obtener acceso completo e inmediato por un pago único de:</p>
+            <p>O si ves a famosas y amigas perdiendo 10, 15 kilos rápidamente usando inyecciones caras como Ozempic o Mounjaro, y te preguntas: <i>"¿Por qué mi cuerpo no funciona así?"</i>...</p>
 
-            <div class="new-price">SOLO $47 USD</div>
-            <p><i>(Menos que el costo de una pizza familiar)</i></p>
+            <p>Entonces, esta es la carta más importante que leerás en tu vida.</p>
+            
+            <p>La verdad es dolorosa, pero necesito decírtela: <b>No es tu culpa.</b></p>
 
-            <a href="LINK_DO_CHECKOUT_AQUI" class="btn-cta">
-                SÍ, QUIERO ACTIVAR MI METABOLISMO AHORA ➤
+            <p>No te falta fuerza de voluntad. No eres perezosa.</p>
+
+            <p><span class="highlight">El verdadero problema es que tus hormonas de quema de grasa (GLP-1 y GIP) están "dormidas".</span></p>
+
+            <p>Debido a años de alimentación moderna, estrés y toxinas, tu cerebro nunca recibe la señal de "estoy llena". Sientes hambre todo el tiempo y tu cuerpo almacena cada caloría como grasa en tu vientre, brazos y piernas.</p>
+
+            <p>Las inyecciones de $1,000 dólares funcionan porque fuerzan artificialmente a estas hormonas a despertar.</p>
+
+            <p class="red-text">PERO AHORA, HAY UNA MEJOR MANERA.</p>
+            
+            <p>Una manera que no requiere agujas.<br>
+            Que no causa náuseas terribles.<br>
+            Y que no cuesta una fortuna.</p>
+
+            <hr>
+
+            <h2>Presentamos: El Plan Mounjaro Natural™</h2>
+            <p class="text-center"><b>El Primer Protocolo del Mundo Diseñado para Activar tus Hormonas de Delgadez Naturalmente.</b></p>
+            
+            <p>Hola, soy <b>Mateo Martínez.</b></p>
+            
+            <p>Después de ayudar a mi esposa Sofía a perder <b>12 kilos en 21 días</b> (cuando los médicos decían que era imposible), decidí compartir este secreto con el mundo.</p>
+
+            <p>El <b>Plan Mounjaro Natural</b> no es una dieta restrictiva donde pasas hambre.<br>
+            Es un manual de <b>Bioquímica Nutricional</b>.</p>
+
+            <p>Te enseñaré la combinación exacta de alimentos, tés y "jugos activadores" que imitan el efecto de los medicamentos, enviando una orden inmediata a tu cerebro: <b>"QUEMA GRASA AHORA".</b></p>
+
+            <div style="background-color: #f0f8ff; padding: 20px; border-radius: 10px; border: 1px solid #b8daff;">
+                <h3 style="margin-top: 0; color: #0056b3;">LO QUE DESCUBRIRÁS DENTRO DEL PROGRAMA:</h3>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li style="margin-bottom: 15px;">✅ <b>El Secreto del GLP-1:</b> Qué comer en el desayuno para que tu cuerpo queme grasa automáticamente durante las siguientes 12 horas.</li>
+                    <li style="margin-bottom: 15px;">✅ <b>La "Inyección" Natural:</b> Una receta de bebida casera potente que suprime el hambre y la ansiedad por los dulces casi instantáneamente (perfecta para las tardes).</li>
+                    <li style="margin-bottom: 15px;">✅ <b>Lista de Compras Económica:</b> Cómo encontrar los ingredientes poderosos en cualquier supermercado de tu barrio, sin gastar más de lo que ya gastas.</li>
+                    <li style="margin-bottom: 15px;">✅ <b>Protocolo de 21 Días:</b> Un paso a paso exacto. Solo tienes que copiar y pegar lo que hicimos para ver los resultados en el espejo.</li>
+                </ul>
+            </div>
+
+            <a href="https://go.centerpag.com/PPU38CQ4ASR" class="btn-cta">
+                SÍ, QUIERO ACTIVAR MI METABOLISMO ➤
+                <span class="btn-subtext">Descarga Inmediata y Acceso de por vida</span>
             </a>
-        </div>
 
-        <div class="guarantee-box">
-            <div class="guarantee-icon">🛡️</div>
-            <h3>MI PROMESA DE "RESULTADOS O DINERO DE VUELTA"</h3>
-            <p><b>Garantía Incondicional de 30 Días</b></p>
-            <p>Estoy tan seguro de que esto funcionará para ti, que asumo todo el riesgo. Entra al programa. Prueba las recetas. Sigue el plan por 30 días.</p>
-            <p>Si no te miras al espejo y ves una mujer más delgada, más joven y más feliz... O si simplemente no te gusta el color del material... Envíame un correo electrónico y te devolveré el 100% de tu dinero. Cada centavo.</p>
-        </div>
+            <hr>
 
-        <h2 class="text-center">PREGUNTAS FRECUENTES</h2>
-        
-        <div class="faq-item">
-            <div class="faq-question">¿Necesito comprar medicamentos o suplementos caros?</div>
-            <div class="faq-answer">No. Todo lo que necesitas está en tu supermercado local y es muy económico.</div>
-        </div>
+            <h2>LO QUE DICEN NUESTRAS ALUMNAS</h2>
+            
+            <div class="testimonial-box">
+                <p class="mb-2">"Mateo, ¡no puedo creerlo! Llevo 5 días haciendo el jugo activador y ya bajé 3 kilos. Lo mejor es que no tengo esa hambre desesperada por la noche. ¡Gracias!"</p>
+                <p class="mb-0 text-right font-weight-bold">- Camila R., 38 años</p>
+            </div>
 
-        <div class="faq-item">
-            <div class="faq-question">¿Tengo que hacer ejercicio?</div>
-            <div class="faq-answer">El método funciona 100% basado en la alimentación hormonal. El ejercicio es bueno para la salud, pero no es obligatorio para ver resultados con este plan.</div>
-        </div>
+            <div class="testimonial-box">
+                <p class="mb-2">"Estuve a punto de comprar las inyecciones, pero me daba miedo los efectos secundarios. Probé el Mounjaro Natural y fue la mejor decisión. Mi esposo dice que parezco otra mujer."</p>
+                <p class="mb-0 text-right font-weight-bold">- Elena S., 45 años</p>
+            </div>
 
-        <div class="faq-item">
-            <div class="faq-question">¿En cuánto tiempo recibiré el acceso?</div>
-            <div class="faq-answer">Inmediatamente. En cuanto tu pago sea aprobado, recibirás un correo electrónico con tu acceso a nuestra plataforma exclusiva.</div>
-        </div>
+            <hr>
 
-        <a href="https://go.centerpag.com/PPU38CQ4ASR" class="btn-cta">
-            QUIERO ACCESO INMEDIATO AL PLAN MOUNJARO NATURAL ➤
-        </a>
+            <h2>SI ORDENAS HOY, TAMBIÉN RECIBIRÁS ESTOS 3 REGALOS GRATIS:</h2>
+
+            <div class="bonus-box">
+                <h4>🎁 REGALO #1: DETOX DE EMERGENCIA 24 HORAS (Valor: $47)</h4>
+                <p class="mb-0">¿Tienes una fiesta o evento mañana? Usa este protocolo para desinflamar tu vientre y perder hasta 2kg de líquidos retenidos en un solo día. <b>(GRATIS HOY)</b></p>
+            </div>
+
+            <div class="bonus-box">
+                <h4>🎁 REGALO #2: POSTRES QUE NO ENGORDAN (Valor: $37)</h4>
+                <p class="mb-0">Aprende a preparar dulces deliciosos que activan tu metabolismo en lugar de frenarlo. Come chocolate sin culpa. <b>(GRATIS HOY)</b></p>
+            </div>
+
+            <div class="bonus-box">
+                <h4>🎁 REGALO #3: ACCESO A LA COMUNIDAD VIP (Valor: Inestimable)</h4>
+                <p class="mb-0">Nunca estarás sola. Únete a miles de mujeres que se apoyan mutuamente en este viaje de transformación. <b>(GRATIS HOY)</b></p>
+            </div>
+
+            <div class="price-section">
+                <h2 style="margin-top: 0; color: #28a745;">OFERTA ESPECIAL POR TIEMPO LIMITADO</h2>
+                
+                <p>Si fueras a un nutricionista especializado en hormonas, pagarías al menos <b>$100 por consulta</b>.</p>
+                <p>Si compraras las inyecciones de farmacia, gastarías <b>$1,000 TODOS LOS MESES</b>.</p>
+
+                <p>El valor total del Plan Mounjaro Natural + Los Bonos es de <span class="old-price">$297</span>.</p>
+
+                <p>Pero hoy, puedes obtener acceso completo e inmediato por un pago único de:</p>
+
+                <div class="new-price">SOLO $47 USD</div>
+                <p><i>(Menos que el costo de una pizza familiar)</i></p>
+
+                <a href="https://go.centerpag.com/PPU38CQ4ASR" class="btn-cta">
+                    SÍ, QUIERO EL PLAN COMPLETO POR $47 ➤
+                </a>
+            </div>
+
+            <div class="guarantee-box">
+                <div class="guarantee-icon">🛡️</div>
+                <h3 style="margin-top:0;">MI PROMESA DE "RESULTADOS O DINERO DE VUELTA"</h3>
+                <p><b>Garantía Incondicional de 30 Días</b></p>
+                <p>Estoy tan seguro de que esto funcionará para ti, que asumo todo el riesgo. Entra al programa. Prueba las recetas. Sigue el plan por 30 días.</p>
+                <p>Si no te miras al espejo y ves una mujer más delgada, más joven y más feliz... O si simplemente no te gusta el color del material... Envíame un correo electrónico y te devolveré el 100% de tu dinero. Cada centavo.</p>
+            </div>
+
+            <h2>PREGUNTAS FRECUENTES</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Necesito comprar medicamentos o suplementos caros?</div>
+                <div class="faq-answer">No. Todo lo que necesitas está en tu supermercado local y es muy económico.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Tengo que hacer ejercicio?</div>
+                <div class="faq-answer">El método funciona 100% basado en la alimentación hormonal. El ejercicio es bueno para la salud, pero no es obligatorio para ver resultados con este plan.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿En cuánto tiempo recibiré el acceso?</div>
+                <div class="faq-answer">Inmediatamente. En cuanto tu pago sea aprobado, recibirás un correo electrónico con tu acceso a nuestra plataforma exclusiva.</div>
+            </div>
+            
+            <br>
+            <p class="text-center">No dejes que la duda te impida tener el cuerpo que mereces.<br>
+            La grasa no se va a ir sola. Necesitas activar tus hormonas.</p>
+
+            <a href="https://go.centerpag.com/PPU38CQ4ASR" class="btn-cta">
+                QUIERO ACCESO INMEDIATO AL PLAN MOUNJARO NATURAL ➤
+            </a>
+
+        </div>
 
     </div>
 
     <footer class="text-center">
-        <div class="main-container">
+        <div class="main-container" style="background: transparent; box-shadow: none;">
             <p>Copyright 2024 – Plan Mounjaro Natural ®<br>Todos los derechos reservados.</p>
             <p>
                 <a href="termos.html" style="color: #666;">Términos de Uso</a> | 
