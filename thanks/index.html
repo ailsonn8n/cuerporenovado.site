@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>Parabéns! Compra Aprovada</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        /* Topo Verde */
+        .header-success {
+            background-color: #28a745;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .check-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 2rem;
+            margin: 0;
+        }
+        
+        .order-sub {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* Conteúdo */
+        .content-body {
+            padding: 40px;
+        }
+
+        h2 {
+            color: #333;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Passos */
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        .step-number {
+            background-color: #28a745;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .step-text h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #000;
+        }
+        .step-text p {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* Botão Acesso */
+        .btn-access {
+            background-color: #007bff;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 20px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            width: 100%;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 30px;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            transition: transform 0.2s;
+        }
+        .btn-access:hover {
+            transform: scale(1.02);
+            background-color: #0069d9;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Atenção / Spam */
+        .warning-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Suporte */
+        .support-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .support-link {
+            color: #666;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .support-link:hover {
+            color: #28a745;
+        }
+
+        /* Mobile */
+        @media (max-width: 576px) {
+            .main-container { margin: 0; border-radius: 0; }
+            .content-body { padding: 25px; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        
+        <div class="header-success">
+            <div class="check-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Parabéns!</h1>
+            <p class="order-sub">Seu pedido foi confirmado com sucesso.</p>
+        </div>
+
+        <div class="content-body">
+
+            <h2>O QUE ACONTECE AGORA?</h2>
+
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    <h4>Verifique seu E-mail</h4>
+                    <p>Acabamos de enviar os dados de acesso e o recibo da compra para o seu endereço de e-mail cadastrado.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    <h4>Acesse a Área de Membros</h4>
+                    <p>Use o link enviado no e-mail para criar sua senha e acessar todo o conteúdo do <b>[NOME DO SEU PRODUTO]</b> + Bônus.</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Se não encontrar o e-mail na sua "Caixa de Entrada", verifique também a pasta de <b>"SPAM"</b> ou <b>"Lixo Eletrônico"</b>. O e-mail pode ter caído lá por engano.
+            </div>
+
+            <a href="LINK_DA_AREA_DE_MEMBROS_OU_HOTMART_CLUB" class="btn-access">
+                ACESSAR MEU PRODUTO AGORA ➤
+            </a>
+
+            <div class="support-section">
+                <p>Precisa de ajuda ou não recebeu o acesso?</p>
+                <p>
+                    <a href="mailto:seuemail@suporte.com" class="support-link">
+                        <i class="fas fa-envelope"></i> Fale com o Suporte
+                    </a>
+                    &nbsp;|&nbsp;
+                    <a href="https://wa.me/SEUNUMERODOWHATSAPP" class="support-link" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Whatsapp
+                    </a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    
+    <script
+        src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+        data-utmify-prevent-xcod-sck
+        data-utmify-prevent-subids
+        async
+        defer
+    ></script>
+
+</body>
+</html>
