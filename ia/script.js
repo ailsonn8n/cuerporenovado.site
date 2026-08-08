@@ -1,37 +1,55 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const chatBox = document.getElementById('chat-box');
+const userInput = document.getElementById('user-input');
+let historico = [];
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+async function enviarMensagem() {
+    const texto = userInput.value.trim();
+    if (!texto) return;
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-const model = genAI.getGenerativeModel({
-  model: 'gemini-2.5-flash', // rápido e barato; use 'gemini-2.5-pro' para respostas mais elaboradas
-  systemInstruction: 'Você é um consultor especializado em Fundos Imobiliários (FIIs), juros compostos e estratégias de longo prazo. Seja claro, direto e didático. Deixe explícito que suas respostas são educacionais, não recomendação financeira formal.',
+    adicionarMensagem(texto, 'user-message');
+    userInput.value = '';
+
+    const idCarregando = adicionarMensagem('Analisando o mercado...', 'ai-message');
+
+    try {
+        const resp = await fetch('http://localhost:3000/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mensagem: texto, historico })
+        });
+        const data = await resp.json();
+
+        atualizarMensagem(idCarregando, data.resposta);
+
+        historico.push({ role: 'user', content: texto });
+        historico.push({ role: 'assistant', content: data.resposta });
+    } catch (err) {
+        atualizarMensagem(idCarregando, 'Erro ao conectar com a IA. Tente novamente.');
+    }
+}
+
+function adicionarMensagem(texto, classeCSS) {
+    const id = 'msg-' + Date.now();
+    const div = document.createElement('div');
+    div.id = id;
+    div.className = `message ${classeCSS}`;
+    div.textContent = texto;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    return id;
+}
+
+function atualizarMensagem(id, texto) {
+    const div = document.getElementById(id);
+    if (div) {
+        div.innerHTML = texto.replace(/\n/g, "<br>");
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+}
+
+userInput.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        enviarMensagem();
+    }
 });
-
-app.post('/api/chat', async (req, res) => {
-  const { mensagem, historico } = req.body;
-
-  try {
-    // Converte o histórico para o formato que o Gemini espera
-    const historicoFormatado = (historico || []).map(h => ({
-      role: h.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: h.content }],
-    }));
-
-    const chat = model.startChat({ history: historicoFormatado });
-    const result = await chat.sendMessage(mensagem);
-    const texto = result.response.text();
-
-    res.json({ resposta: texto });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ erro: 'Erro ao consultar a IA' });
-  }
-});
-
-app.listen(3000, () => console.log('Servidor rodando na porta 3000'));
