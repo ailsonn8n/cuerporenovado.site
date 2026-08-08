@@ -9,7 +9,7 @@ app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 const model = genAI.getGenerativeModel({
-  model: 'gemini-2.5-flash',
+  model: 'gemini-flash-latest',
   systemInstruction: 'Você é um consultor especializado em Fundos Imobiliários (FIIs), juros compostos e estratégias de longo prazo. Seja claro, direto e didático. Deixe explícito que suas respostas são educacionais, não recomendação financeira formal.',
 });
 
