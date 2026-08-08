@@ -1,2 +1,2 @@
 npm init -y
-npm install express cors dotenv @anthropic-ai/sdk
+npm install express cors dotenv @google/generative-ai
