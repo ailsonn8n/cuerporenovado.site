@@ -1,5 +1,5 @@
 // Substitua o texto abaixo pela sua chave do Google AI Studio
-const API_KEY = "AQ.Ab8RN6Ioxc6Ssxx4eCvJ55ppNPN8G6JzV-HFexg_w9xo5xnOog"; 
+const API_KEY = "AQ.Ab8RN6I_j8kT-nBba791uVJHiy7UeWMkaSbV6Wd-ApknDEJKlg"; 
 
 const chatBox = document.getElementById('chat-box');
 const userInput = document.getElementById('user-input');
