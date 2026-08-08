@@ -1,25 +1,34 @@
-// Substitua o texto abaixo pela sua chave do Google AI Studio
-const API_KEY = "AQ.Ab8RN6I_j8kT-nBba791uVJHiy7UeWMkaSbV6Wd-ApknDEJKlg"; 
+// O sistema vai buscar a chave no "cofre" do seu navegador
+let API_KEY = localStorage.getItem("minha_api_key_gemini");
+
+// Se não tiver chave salva, ele vai abrir um alerta pedindo
+if (!API_KEY) {
+    API_KEY = prompt("Bem-vindo! Para começar, cole sua API Key do Google AI Studio aqui:\n(Ela ficará salva apenas no seu navegador, com segurança)");
+    if (API_KEY) {
+        localStorage.setItem("minha_api_key_gemini", API_KEY.trim());
+    }
+}
 
 const chatBox = document.getElementById('chat-box');
 const userInput = document.getElementById('user-input');
 
-// Esta é a personalidade e o conhecimento base da sua IA
 const systemInstruction = "Você é um consultor financeiro especialista e racional. Seu foco principal é analisar estratégias de geração de renda passiva através de Fundos Imobiliários (FIIs), explicar o efeito bola de neve dos juros compostos no longo prazo e avaliar cenários de alavancagem imobiliária. Responda de forma direta e sem jargões desnecessários.";
 
 async function enviarMensagem() {
     const texto = userInput.value.trim();
     if (!texto) return;
 
-    // Adiciona a pergunta do usuário na tela
+    if (!API_KEY) {
+        adicionarMensagem("Erro: Nenhuma API Key encontrada. Recarregue a página e insira sua chave para testar.", 'ai-message');
+        return;
+    }
+
     adicionarMensagem(texto, 'user-message');
     userInput.value = '';
 
-    // Adiciona a mensagem de "Pensando..."
     const idCarregando = adicionarMensagem('Analisando o mercado...', 'ai-message');
 
     try {
-        // Envia a requisição para o cérebro do Gemini
         const resposta = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -31,14 +40,22 @@ async function enviarMensagem() {
 
         const dados = await resposta.json();
         
-        // Extrai o texto da resposta da IA
-        const textoRespostaIA = dados.candidates[0].content.parts[0].text;
+        // Tratamento de segurança para caso a chave esteja errada ou bloqueada
+        if (dados.error) {
+            atualizarMensagem(idCarregando, `Erro de API: ${dados.error.message}`);
+            if (dados.error.code === 401 || dados.error.code === 400) {
+                // Se a chave for inválida, ele apaga do cofre para você colocar outra na próxima
+                localStorage.removeItem("minha_api_key_gemini");
+                API_KEY = null; 
+            }
+            return;
+        }
         
-        // Atualiza a mensagem de "Pensando..." com a resposta final
+        const textoRespostaIA = dados.candidates[0].content.parts[0].text;
         atualizarMensagem(idCarregando, textoRespostaIA);
         
     } catch (erro) {
-        atualizarMensagem(idCarregando, 'Erro na comunicação. Verifique sua API Key ou sua conexão.');
+        atualizarMensagem(idCarregando, 'Erro na comunicação. Verifique sua conexão com a internet.');
         console.error(erro);
     }
 }
@@ -62,7 +79,6 @@ function atualizarMensagem(id, texto) {
     }
 }
 
-// Permite enviar a mensagem apertando "Enter"
 userInput.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
