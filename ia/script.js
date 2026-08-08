@@ -12,7 +12,7 @@ async function enviarMensagem() {
     const idCarregando = adicionarMensagem('Analisando o mercado...', 'ai-message');
 
     try {
-        const resp = await fetch('https://cuerporenovado-site.onrender.com', {
+        const resp = await fetch('https://cuerporenovado-site.onrender.com/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ mensagem: texto, historico })
