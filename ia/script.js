@@ -29,23 +29,22 @@ async function enviarMensagem() {
     const idCarregando = adicionarMensagem('Analisando o mercado...', 'ai-message');
 
     try {
-        // Link estabilizado para a versão correta do modelo
-        const resposta = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+        // Usando o modelo atualizado e compatível
+        const resposta = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview:generateContent?key=${API_KEY}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 system_instruction: { parts: [{ text: systemInstruction }] },
-                contents: [{ parts: [{ text: texto }] }]
+                contents: [{ role: "user", parts: [{ text: texto }] }]
             })
         });
 
         const dados = await resposta.json();
         
-        // Tratamento de segurança e erros
+        // Tratamento de erros da API
         if (dados.error) {
             atualizarMensagem(idCarregando, `Erro de API: ${dados.error.message}`);
             if (dados.error.code === 401 || dados.error.code === 400 || dados.error.code === 403) {
-                // Remove a chave do cofre se ela for inválida ou bloqueada
                 localStorage.removeItem("minha_api_key_gemini");
                 API_KEY = null; 
             }
@@ -56,7 +55,7 @@ async function enviarMensagem() {
         atualizarMensagem(idCarregando, textoRespostaIA);
         
     } catch (erro) {
-        atualizarMensagem(idCarregando, 'Erro na comunicação. Verifique sua conexão ou olhe o Console (F12) para mais detalhes.');
+        atualizarMensagem(idCarregando, 'Erro na comunicação. Verifique sua conexão com a internet.');
         console.error(erro);
     }
 }
@@ -75,7 +74,6 @@ function adicionarMensagem(texto, classeCSS) {
 function atualizarMensagem(id, texto) {
     const div = document.getElementById(id);
     if (div) {
-        // Transforma quebras de linha padrão do texto em quebras visuais no HTML
         div.innerHTML = texto.replace(/\n/g, "<br>");
         chatBox.scrollTop = chatBox.scrollHeight;
     }
