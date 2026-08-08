@@ -1,65 +1,37 @@
-const chatBox = document.getElementById('chat-box');
-const userInput = document.getElementById('user-input');
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
-function enviarMensagem() {
-    const texto = userInput.value.trim();
-    if (!texto) return;
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-    // Exibe a mensagem do usuário na tela
-    adicionarMensagem(texto, 'user-message');
-    userInput.value = '';
-
-    // Simula o tempo de digitação do consultor
-    const idCarregando = adicionarMensagem('Analisando o mercado...', 'ai-message');
-
-    setTimeout(() => {
-        const respostaIA = gerarRespostaInteligente(texto);
-        atualizarMensagem(idCarregando, respostaIA);
-    }, 1000); // Responde em 1 segundo
-}
-
-function gerarRespostaInteligente(pergunta) {
-    const p = pergunta.toLowerCase();
-
-    if (p.includes('fii') || p.includes('fundo imobiliario') || p.includes('fundos imobiliários')) {
-        return "Os Fundos Imobiliários (FIIs) são a base mais eficiente para geração de renda passiva mensal isenta de Imposto de Renda. O foco deve ser em ativos de tijolo com boa localização ou de papel com garantias sólidas (CRIs), sempre visando o reinvestimento dos dividendos para acelerar o efeito bola de neve.";
-    } 
-    else if (p.includes('juros') || p.includes('compostos') || p.includes('bola de neve')) {
-        return "O efeito bola de neve dos juros compostos nos FIIs ocorre quando o rendimento mensal (dividendos) é integralmente utilizado para comprar novas cotas. No longo prazo, a quantidade de cotas gera proventos que compram ainda mais cotas, criando um ciclo de crescimento exponencial do patrimônio sem aporte adicional.";
-    } 
-    else if (p.includes('alavancaj') || p.includes('emprestimo') || p.includes('imovel')) {
-        return "A alavancagem imobiliária consiste em utilizar capital de terceiros (como financiamentos estruturados ou crédito com garantia) a taxas inferiores ao dividend yield ou à valorização do ativo. Se bem calculada, o próprio fluxo de caixa gerado pelo imóvel ou fundo paga a dívida, acelerando a construção de patrimônio.";
-    } 
-    else if (p.includes('olá') || p.includes('ola') || p.includes('bom dia') || p.includes('boa tarde')) {
-        return "Olá! Sou seu consultor financeiro especialista em FIIs, estratégias de longo prazo e alavancagem. O que vamos analisar hoje?";
-    } 
-    else {
-        return "Análise registrada. Para mantermos o foco na nossa estratégia, recomendo avaliarmos o impacto disso no reinvestimento de dividendos dos FIIs ou em cenários de alavancagem. Deseja simular uma projeção de juros compostos?";
-    }
-}
-
-function adicionarMensagem(texto, classeCSS) {
-    const id = 'msg-' + Date.now();
-    const div = document.createElement('div');
-    div.id = id;
-    div.className = `message ${classeCSS}`;
-    div.textContent = texto;
-    chatBox.appendChild(div);
-    chatBox.scrollTop = chatBox.scrollHeight;
-    return id;
-}
-
-function atualizarMensagem(id, texto) {
-    const div = document.getElementById(id);
-    if (div) {
-        div.innerHTML = texto.replace(/\n/g, "<br>");
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-}
-
-userInput.addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        enviarMensagem();
-    }
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+const model = genAI.getGenerativeModel({
+  model: 'gemini-2.5-flash', // rápido e barato; use 'gemini-2.5-pro' para respostas mais elaboradas
+  systemInstruction: 'Você é um consultor especializado em Fundos Imobiliários (FIIs), juros compostos e estratégias de longo prazo. Seja claro, direto e didático. Deixe explícito que suas respostas são educacionais, não recomendação financeira formal.',
 });
+
+app.post('/api/chat', async (req, res) => {
+  const { mensagem, historico } = req.body;
+
+  try {
+    // Converte o histórico para o formato que o Gemini espera
+    const historicoFormatado = (historico || []).map(h => ({
+      role: h.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: h.content }],
+    }));
+
+    const chat = model.startChat({ history: historicoFormatado });
+    const result = await chat.sendMessage(mensagem);
+    const texto = result.response.text();
+
+    res.json({ resposta: texto });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: 'Erro ao consultar a IA' });
+  }
+});
+
+app.listen(3000, () => console.log('Servidor rodando na porta 3000'));
