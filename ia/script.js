@@ -1,62 +1,40 @@
-// O sistema vai buscar a chave no "cofre" do seu navegador
-let API_KEY = localStorage.getItem("minha_api_key_gemini");
-
-// Se não tiver chave salva, ele vai abrir um alerta pedindo
-if (!API_KEY) {
-    API_KEY = prompt("Bem-vindo! Para começar, cole sua API Key do Google AI Studio aqui:\n(Ela ficará salva apenas no seu navegador, com segurança)");
-    if (API_KEY) {
-        localStorage.setItem("minha_api_key_gemini", API_KEY.trim());
-    }
-}
-
 const chatBox = document.getElementById('chat-box');
 const userInput = document.getElementById('user-input');
 
-const systemInstruction = "Você é um consultor financeiro especialista e racional. Seu foco principal é analisar estratégias de geração de renda passiva através de Fundos Imobiliários (FIIs), explicar o efeito bola de neve dos juros compostos no longo prazo e avaliar cenários de alavancagem imobiliária. Responda de forma direta e sem jargões desnecessários.";
-
-async function enviarMensagem() {
+function enviarMensagem() {
     const texto = userInput.value.trim();
     if (!texto) return;
 
-    if (!API_KEY) {
-        adicionarMensagem("Erro: Nenhuma API Key encontrada. Recarregue a página e insira sua chave para testar.", 'ai-message');
-        return;
-    }
-
+    // Exibe a mensagem do usuário na tela
     adicionarMensagem(texto, 'user-message');
     userInput.value = '';
 
+    // Simula o tempo de digitação do consultor
     const idCarregando = adicionarMensagem('Analisando o mercado...', 'ai-message');
 
-    try {
-        // Usando o modelo atualizado e compatível
-        const resposta = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview:generateContent?key=${API_KEY}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                system_instruction: { parts: [{ text: systemInstruction }] },
-                contents: [{ role: "user", parts: [{ text: texto }] }]
-            })
-        });
+    setTimeout(() => {
+        const respostaIA = gerarRespostaInteligente(texto);
+        atualizarMensagem(idCarregando, respostaIA);
+    }, 1000); // Responde em 1 segundo
+}
 
-        const dados = await resposta.json();
-        
-        // Tratamento de erros da API
-        if (dados.error) {
-            atualizarMensagem(idCarregando, `Erro de API: ${dados.error.message}`);
-            if (dados.error.code === 401 || dados.error.code === 400 || dados.error.code === 403) {
-                localStorage.removeItem("minha_api_key_gemini");
-                API_KEY = null; 
-            }
-            return;
-        }
-        
-        const textoRespostaIA = dados.candidates[0].content.parts[0].text;
-        atualizarMensagem(idCarregando, textoRespostaIA);
-        
-    } catch (erro) {
-        atualizarMensagem(idCarregando, 'Erro na comunicação. Verifique sua conexão com a internet.');
-        console.error(erro);
+function gerarRespostaInteligente(pergunta) {
+    const p = pergunta.toLowerCase();
+
+    if (p.includes('fii') || p.includes('fundo imobiliario') || p.includes('fundos imobiliários')) {
+        return "Os Fundos Imobiliários (FIIs) são a base mais eficiente para geração de renda passiva mensal isenta de Imposto de Renda. O foco deve ser em ativos de tijolo com boa localização ou de papel com garantias sólidas (CRIs), sempre visando o reinvestimento dos dividendos para acelerar o efeito bola de neve.";
+    } 
+    else if (p.includes('juros') || p.includes('compostos') || p.includes('bola de neve')) {
+        return "O efeito bola de neve dos juros compostos nos FIIs ocorre quando o rendimento mensal (dividendos) é integralmente utilizado para comprar novas cotas. No longo prazo, a quantidade de cotas gera proventos que compram ainda mais cotas, criando um ciclo de crescimento exponencial do patrimônio sem aporte adicional.";
+    } 
+    else if (p.includes('alavancaj') || p.includes('emprestimo') || p.includes('imovel')) {
+        return "A alavancagem imobiliária consiste em utilizar capital de terceiros (como financiamentos estruturados ou crédito com garantia) a taxas inferiores ao dividend yield ou à valorização do ativo. Se bem calculada, o próprio fluxo de caixa gerado pelo imóvel ou fundo paga a dívida, acelerando a construção de patrimônio.";
+    } 
+    else if (p.includes('olá') || p.includes('ola') || p.includes('bom dia') || p.includes('boa tarde')) {
+        return "Olá! Sou seu consultor financeiro especialista em FIIs, estratégias de longo prazo e alavancagem. O que vamos analisar hoje?";
+    } 
+    else {
+        return "Análise registrada. Para mantermos o foco na nossa estratégia, recomendo avaliarmos o impacto disso no reinvestimento de dividendos dos FIIs ou em cenários de alavancagem. Deseja simular uma projeção de juros compostos?";
     }
 }
 
